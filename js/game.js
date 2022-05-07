@@ -1,7 +1,9 @@
 class Game{
   constructor(context) {
     this.ctx = context;
+    this.player = new Player (10, 565, 35, 35);
   }
+
 
   _assignControls() {
     // Controles del teclado
@@ -19,8 +21,15 @@ class Game{
     });
   }
 
-  _update() {
+  _drawPlayer(){
+    this.ctx.fillStyle = "red";
+    this.ctx.fillRect(this.player.x, this.player.y, this.player.width, this.player.height)
+  }
+
+  _update(  ) {
+    this._drawPlayer();
     window.requestAnimationFrame(() => this._update());
+ 
   }
 
   start() {
