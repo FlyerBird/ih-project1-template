@@ -1,6 +1,4 @@
-
-
-class Player{
+class Bird{
     constructor(x, y, width, height) {
       this.x = x;
       this.y = y;
@@ -8,7 +6,7 @@ class Player{
       this.height = height;
     
     }
-
+/*
     moveRight() {
       this.x = this.x + 25;
     }
@@ -16,15 +14,7 @@ class Player{
     moveLeft() {
       this.x = this.x - 25;
     }
+    */
+   
  }
-
-
- /*
-class Gravity extends Player {
-  constructor(length) {
-      
-  }
-    
-}
-*/
 
