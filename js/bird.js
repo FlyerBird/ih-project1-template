@@ -1,33 +1,45 @@
+
 class Bird{
-    constructor(x, y, width, height) {
+    constructor(x, y, width, height, speed) {
       this.x = x;
       this.y = y;
       this.width = width;
       this.height = height;
-      this.goLeft = false;
-    
-    }
+      this.speed = speed;
 
-    /*
-    moveAround(){
-        if (this.goLeft == true ){
-            this.x=this.x -3;
-        }
-        if (this.x > 965 ) {
-            this.goLeft=true;
-        }
-        if (this.x < 35){
-            this.goLeft = false
-        }
+      this.dx = 1 * this.speed;
+      this.dy = 1 * this.speed;  
     }
-    */
 
     _moveAround() {
-        this.x = this.x + 5;
-        if (this.x > 1000) {
-          this.x = 10-this.width;
+        if (this.x > 900) {
+            this.dx = -this.dx;
         }
+
+        if (this.x < 0 ) {
+            this.dx = -this.dx;
+        }
+
+        if (this.y > 565 ) {
+            this.dy = -this.dy;
+        }
+
+        if (this.y < 0 ) {
+            this.dy = -this.dy;
+        }
+        
+        this.x += this.dx;
+        this.y += this.dy;
+        
       }
 
  }
-
+ 
+/*
+ _moveAround() {
+    this.x = this.x + 5;
+    if (this.x > 1000) {
+      this.x = 10-this.width;
+    }
+  }
+  */
