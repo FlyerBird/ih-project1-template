@@ -23,6 +23,12 @@
   display: none;
 }
 
+#typo {
+  font-family: 'Anton', sans-serif;
+  font-size: 80px;
+}
+
+
 canvas {
   border: 1px solid black;
   display: block;
@@ -30,6 +36,7 @@ canvas {
   margin-top: 30px;
   margin-bottom: 50px;
 }
+
 
 /* Auxiliar classes */
 

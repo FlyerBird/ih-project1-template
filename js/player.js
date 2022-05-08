@@ -18,13 +18,37 @@ class Player{
     }
  }
 
-
- /*
+/*
 class Gravity extends Player {
-  constructor(length) {
-      
+   constructor(jump, direction, velocity, jumpPower, fallingSpeed) {
+     super(x, y, width, height);
+      this.jump = jump;
+      this.direction = direction;
+      this.velocity = velocity;
+      this.jumpPower = jumpPower;
+      this.fallingSpeed = fallingSpeed;
+      this.minHeight = minHeight; 
+
   }
-    
-}
-*/
+
+  gravityOn(){
+    if (this.y >= this.minHeight && jump == false){
+      this.y = this.y;
+    } else {
+      this.y = this.y + (this.direction*this.velocity);
+    }
+
+    if (this.jump == true){
+      this.velocity = -this.jumpPower;
+    } else {
+      this.velocity = this.fallingSpeed;
+    }
+  
+
+  }
+  
+
+  }
+  */
+
 
