@@ -3,7 +3,22 @@
   padding: 0;
 }
 
+
 /* Basic styles, change according to your style */
+
+body {
+  background-color: #45d168;
+  font-family: 'Anton', sans-serif;
+}
+
+#typo {
+  font-size: 80px;
+}
+
+p, h2 {
+  margin: 10px 0;
+  color: #101110;
+}
 
 #start-page,
 #lose-page {
@@ -17,20 +32,34 @@
   margin: 0 auto;
   border: 1px solid black;
   margin-top: 30px;
+  background: rgb(230, 232, 227);
+  color: #45d168;
 }
 
 #lose-page {
   display: none;
 }
 
-#typo {
-  font-family: 'Anton', sans-serif;
-  font-size: 80px;
+
+button#start,
+button#start-again {
+  padding: 15px 30px;
+  border-radius: 30px;
+  font-size: 20px;
+  border: none;
+  margin: 10px 0;
+  background-color: #45d168;
+}
+
+button#start:hover,
+button#start-again:hover {
+  background: linear-gradient(0deg, rgba(221, 218, 154, 1) 0%, rgb(27, 185, 90) 100%);
+  color: rgb(244, 247, 245);
 }
 
 
 canvas {
-  border: 1px solid black;
+  border: 1px solid rgb(10, 104, 57);
   display: block;
   margin: 0 auto;
   margin-top: 30px;

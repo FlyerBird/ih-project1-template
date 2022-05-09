@@ -1,12 +1,13 @@
+
 class Game{
   constructor(context) {
     this.ctx = context;
-    this.player = new Player (20, 350, 35, 35, 0, 10);
+    this.player = new Player (20, 565, 35, 35);
     this.bird = new Bird (500, 20, 100, 35, 5);
     
   }
-
   
+
   _assignControls() {
     // Controles del teclado
     document.addEventListener('keydown', (event) => {
@@ -19,17 +20,62 @@ class Game{
           this.player.moveRight();
           break;
         case 'ArrowUp':
-            this.player.moveUp();
+            this.player.jump();
             break;
-        case 'ArrowDown':
-              this.player.moveDown();
-              break;
         default:
         break;
         }
 
       });
-      }
+          }
+
+ /*
+  _assignControls() {
+    // Controles del teclado
+    document.addEventListener('keydown', (event) => {
+      switch (event.code) {
+         
+        case 'ArrowLeft':
+          this.player.moveLeft();
+          break;
+        case 'ArrowRight':
+          this.player.move() = true;
+          break;
+        case 'ArrowUp':
+            this.player.keyUp = true;
+            break;
+        default:
+        break;
+        }
+
+      });
+
+
+    }
+  */
+     
+/*
+      _assignControls2() {
+        // Controles del teclado
+        document.addEventListener('keyup', (event) => {
+          switch (event.code) {
+               
+            case 'ArrowLeft':
+              this.player.keyLeft = false;
+              break;
+            case 'ArrowRight':
+              this.player.keyRight = false;
+              break;
+            case 'ArrowUp':
+                this.player.keyUp = false;
+                break;
+            default:
+            break;
+            }
+      
+            });
+    */
+
 
 
   _drawPlayer(){
@@ -40,13 +86,8 @@ class Game{
 
   _updatePlayer(){
     this._drawPlayer();
-    this.y += this.yVelocity
-    
-    if (this.y + this.height + this.yVelocity <= innerHeight) {
-      this.yVelocity += gravity
-    } else { 
-    this.yVelocity += gravity;
-  }
+    //this.y += this.yVelocity
+    //this.floor();
   }
 
 
@@ -77,10 +118,9 @@ class Game{
   _update() {
     this._clean()
     this._updatePlayer();
-    this._updateBird(this.ctx);
-    window.requestAnimationFrame(() => this._update());
+    this._updateBird();
+    window.requestAnimationFrame(() => this._update())
    
-    
   }
 
   start() {
