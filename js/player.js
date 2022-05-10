@@ -22,9 +22,12 @@ class Player{
       */
     }
 
+    
+
     jump() {
       
       const jumpReference = this.y;
+      
       const jumpUp = () => {
         
         if((this.y > jumpReference-this.jumpHeight) && (!this.jumping)) {

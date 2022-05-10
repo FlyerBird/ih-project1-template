@@ -5,12 +5,32 @@ class Bird{
       this.y = y;
       this.width = width;
       this.height = height;
-      this.speed = speed;
 
-      this.dx = 1 * this.speed;
-      this.dy = 1 * this.speed;  
+      this.direction = "down";
+      //this.speed = speed;
+
+      //this.dx = 1 * this.speed;
+      //this.dy = 1 * this.speed;  
     }
 
+   _moveAround (){
+    
+//console.log( this.direction, this.y);
+     if ( this.direction == "down") {
+       this.y = this.y + 3
+
+     } else if ( this.direction == "up") {
+      this.y = this.y - 3
+     }
+     
+     if (this.y > 565) {
+       this.direction = "up";
+     } else if (this.y < 0) {
+       this.direction = "down"
+     }
+     
+   }
+   /*
     _moveAround() {
         if (this.x > 900) {
             this.dx = -this.dx;
@@ -32,6 +52,8 @@ class Bird{
         this.y += this.dy;
         
       }
+      */
+      //_stop parar
 
  }
  
