@@ -4,6 +4,8 @@ class Game{
     this.ctx = context;
     this.player = new Player (20, 565, 35, 35);
     this.bird = new Bird (500, 20, 100, 35);
+   // this.intervalGame = undefined;
+    //this.intervalFall = undefined;
     
   }
   
@@ -20,12 +22,7 @@ _collision(){
 
 //same with bird
 // pensar condicional que quan colisioni en les cantonades superiors cridarem this.bird.stop i farem un console.log de muerte
-/*
-  if (this.player.y >= this.bird.y && this.player.y <= this.bird.y + this.bird.height) {
-    console.log("MUERTEEEEEEEEEE!")
-  } else (this.player.x >= this.bird.x &&  this.player.x <= this.bird.x + this.bird.width) 
-       console.log ("MUERTEEEEE!")
-  */
+
        if (
         (
           // Compruebo si mi player está dentro de la X + width del bird
@@ -41,32 +38,12 @@ _collision(){
           bird.y >= this.player.y && bird.y <= this.player.y + this.player.height
         )
       ) {
-        /*
-        // Aplico efectos después de colisión
-        if (droplet.role === 'food') {
-          this.meatball._increase();
-          this.points++;
-        } else if (droplet.role === 'poison') {
-          this.meatball._decrease();
-          this.points--;
-        }
-        if (this.points < 0) {
-          console.log('You lose!');
-          this.gameOver();
-        }
-        // Elimino elementos de mi array cuando ya han colisionado
-        let index = this.droplets.indexOf(droplet);
-        this.droplets.splice(index, 1);
-        */
 
-
-        console.log ("BIRD CATCHED YOU");
-      }
-
-
- 
-      
-
+        //alert ("GAME OVER");
+        this.gameOver();
+        //this._collision();
+      }    
+    
 }
 
 
@@ -82,6 +59,7 @@ _collision(){
           this.player.moveRight();
           break;
         case 'ArrowUp':
+          //if !this.player.jumping
             this.player.jump();
             break;
         default:
@@ -91,74 +69,33 @@ _collision(){
       });
           }
 
- /*
-  _assignControls() {
-    // Controles del teclado
-    document.addEventListener('keydown', (event) => {
-      switch (event.code) {
-         
-        case 'ArrowLeft':
-          this.player.moveLeft();
-          break;
-        case 'ArrowRight':
-          this.player.move() = true;
-          break;
-        case 'ArrowUp':
-            this.player.keyUp = true;
-            break;
-        default:
-        break;
-        }
+_checkIfwin() {
+  if (this.player.x > 1000) {
+    this._winner();
+  }
+}
+// check si player.x > canvas x
+// cridem checkifwin desde update
+// if (fora del canvas) mostrar pantalla win i matar canvas
 
-      });
-
-
-    }
-  */
-     
-/*
-      _assignControls2() {
-        // Controles del teclado
-        document.addEventListener('keyup', (event) => {
-          switch (event.code) {
-               
-            case 'ArrowLeft':
-              this.player.keyLeft = false;
-              break;
-            case 'ArrowRight':
-              this.player.keyRight = false;
-              break;
-            case 'ArrowUp':
-                this.player.keyUp = false;
-                break;
-            default:
-            break;
-            }
-      
-            });
-    */
-
+_winner() {
+  const winPage = document.getElementById('win-page');
+  winPage.style = "display: flex";
+  const canvas = document.getElementById('canvas');
+  canvas.style = "display: none;"
+}
 
 
   _drawPlayer(){
     this.ctx.fillStyle = "red";
-    this.ctx.fillRect(this.player.x, this.player.y, this.player.width, this.player.height)
-    
+    this.ctx.fillRect(this.player.x, this.player.y, this.player.width, this.player.height);
+   //console.log(this.player.width, this.player.height);
+   //this.ctx.drawImage(player,35, 35);
   }
 
   _updatePlayer(){
     this._drawPlayer();
-    //this.y += this.yVelocity
-    //this.floor();
   }
-
-
- /*
-  animate() {
-    requestAnimationFrame(this.animate)
-    Player._updatePlayer()
-  }
-  */
 
   _drawBird(ctx){
     this.ctx.fillStyle = "grey";
@@ -172,16 +109,26 @@ _collision(){
 
  }
 
+ gameOver() {
+  // Qué tiene que ocurrir cuando pierde
+ // clearInterval(this.intervalFall);
+ // clearInterval(this.intervalGame);
+  const losePage = document.getElementById('lose-page');
+  losePage.style = "display: flex";
+  const canvas = document.getElementById('canvas');
+  canvas.style = "display: none;"
+}
 
   _clean(){
     this.ctx.clearRect(0,0,1000,600);
   }
 
   _update() {
-    this._clean()
+    this._clean();
     this._updatePlayer();
     this._updateBird();
     this._collision(this.player,this.bird)
+    this._checkIfwin();
     window.requestAnimationFrame(() => this._update())
   }
 

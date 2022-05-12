@@ -30,6 +30,8 @@ class Bird{
      }
      
    }
+
+
    /*
     _moveAround() {
         if (this.x > 900) {
@@ -57,11 +59,3 @@ class Bird{
 
  }
  
-/*
- _moveAround() {
-    this.x = this.x + 5;
-    if (this.x > 1000) {
-      this.x = 10-this.width;
-    }
-  }
-  */

@@ -19,6 +19,7 @@ body {
 p, h2 {
   margin: 10px 0;
   color: #101110;
+  font-weight: bolder;
 }
 
 #start-page,
@@ -33,12 +34,21 @@ p, h2 {
   margin: 0 auto;
   border: 1px solid black;
   margin-top: 30px;
-  background: rgb(230, 232, 227);
+  background-color: rgb(226, 227, 232);
+  background-image: url('../img/img-hawk\ 1000x667.png');
+  background-size: 5%;
   color: #45d168;
+}
+
+/*same with win-page*/
+#win-page {
+  display: none;
+  font-size: 50px;
 }
 
 #lose-page {
   display: none;
+  font-size: 50px;
 }
 
 
@@ -65,7 +75,10 @@ canvas {
   margin: 0 auto;
   margin-top: 30px;
   margin-bottom: 50px;
-  background-color: #dde8df;
+  background-image: url('../img/img-landscape\ 1100x999.png');
+  background-size: 1000px 600px;
+  background-color: #d2cedf;
+  
 }
 
 

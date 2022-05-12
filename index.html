@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/style.css"/>
-  
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="style">
+  <link rel="stylesheet" href="css/style.css" />
+
+  <link rel="icon" type="image/x-icon" href="./img/img-hawk 1000x667.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="style">
 
   <title>Avoid the Bird</title>
 </head>
+
 <body>
 
   <div id="start-page">
@@ -23,19 +27,28 @@
     </main>
   </div>
 
-    <div id="lose-page">
+  <div id="lose-page">
     <main>
-      <h1>YOU LOSE SUCKER</h1>
+      <h1>GAME OVER</h1>
+      <button id="restart">RESTART</button>
+    </main>
+  </div>
+
+  <div id="win-page">
+    <main>
+      <h1>CONGRATS! You are now in LEVEL 2</h1>
+      <h2>(level 2 under construction)</h2>
     </main>
   </div>
 
   <canvas id="canvas" width="1000" height="600" class="hidden"></canvas>
 
-  
-
+  <script src="js/assets.js"></script>
   <script src="js/bird.js"></script>
+
   <script src="js/player.js"></script>
   <script src="js/game.js"></script>
   <script src="js/scripts.js"></script>
 </body>
+
 </html>

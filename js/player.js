@@ -8,18 +8,6 @@ class Player{
       this.jumpHeight = 200;
       this.jumping = false;
 
-      /*
-      this.xVelocity = xVelocity;
-      this.yVelocity = yVelocity;
-
-      this.jump = false;
-
-      this.gravity = 0.9;
-      
-      this.keyLeft = false;
-      this.keyRight = false;
-      this.keyUp = false;
-      */
     }
 
     
@@ -47,31 +35,15 @@ class Player{
 
   
     moveRight() {
+      
       this.x = this.x + 25;
     }
 
     moveLeft() {
+     //  if (no estic fora del canvas)
       this.x = this.x - 25;
     }
-/*
-    moveUp() {
-      this.y = this.y - 50;
-    }
-    */
-  
-    /*
-moveLeft() {
-if (this.keyLeft == true) {
-  this.xVelocity = 6;
-}
-}
 
-
-    animate() {
-      requestAnimationFrame(this.animate)
-      Player._updatePlayer()
-    }
-*/
  }
 
 
