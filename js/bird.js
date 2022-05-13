@@ -18,13 +18,13 @@ class Bird{
     
 //console.log( this.direction, this.y);
      if ( this.direction == "down") {
-       this.y = (this.y + 6) 
+       this.y = (this.y + 12) 
 
      } else if ( this.direction == "up") {
       this.y = this.y - 3
      }
      
-     if (this.y > 530) {
+     if (this.y > 480) {
        this.direction = "up";
      } else if (this.y < 0) {
        this.direction = "down"

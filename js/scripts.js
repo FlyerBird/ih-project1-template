@@ -13,6 +13,7 @@ window.onload = function () {
     canvas.classList.remove('hidden');
     const game = new Game(ctx);
     game.start();
+    
   }
 
  // restartbutton.onclick = location.reload()

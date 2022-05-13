@@ -3,10 +3,11 @@ class Game{
   constructor(context) {
     this.ctx = context;
     this.player = new Player (20, 530, 70, 70);
-    this.bird = new Bird (200, 20, 200, 70, 4);
-    this.bird2 = new Bird (600, 200, 200, 70, 4);
+    this.bird = new Bird (200, 20, 230, 100, );
+    this.bird2 = new Bird (600, 200, 230, 100,);
    //Sounds
-   this.gameOverSound = new sound ('./sounds/gameOverSound.wav')
+   this.gameOverSound = new sound ('./sounds/gameOverSound.wav');
+   this.youWin = new sound ('./sounds/newLevel.wav')
     
   }
   
@@ -94,7 +95,9 @@ _collision2(){
 
 _checkIfwin() {
   if (this.player.x > 930) {
+    this.youWin.play();
     this._winner();
+    this.youWin.pause();
   }
 }
 // check si player.x > canvas x
@@ -172,6 +175,7 @@ _updateBird2(){
   start() {
     this._assignControls();
     this._update();
+    
   }
   
 }

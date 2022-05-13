@@ -22,7 +22,7 @@ p, h2 {
   margin: 10px 0;
   color: #101110;
   font-weight: bolder;
-  background-color: rgb(226, 227, 232);
+  background-color: rgb(244, 246, 251);
   
 }
 
@@ -38,9 +38,9 @@ p, h2 {
   margin: 0 auto;
   border: 1px solid black;
   margin-top: 30px;
-  background-color: rgb(226, 227, 232);
-  background-image: url('../img/img-hawk\ 1000x667.png');
-  background-size: 5%;
+  background-color: rgb(244, 246, 251);
+  background-image: url('../img/background-intro.webp');
+  background-size: 100%;
   color: #45d168;
 }
 
@@ -63,8 +63,8 @@ p, h2 {
   border: 1px solid black;
   margin-top: 30px;
   background-color: rgb(226, 227, 232);
-  background-image: url('../img/img-hawk\ 1000x667.png');
-  background-size: 5%;
+  background-image: url('../img/confetti-backgroundWin.jpg');
+  background-size: 100%;
   color: #45d168;
 }
 
@@ -99,7 +99,7 @@ canvas {
   margin: 0 auto;
   margin-top: 30px;
   margin-bottom: 50px;
-  background-image: url('../img/img-landscape\ 1100x999.png');
+  background-image: url('../img/new-landsacape.jpg');
   background-size: 1000px 600px;
   background-color: #d2cedf;
   
