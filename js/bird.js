@@ -13,17 +13,18 @@ class Bird{
       //this.dy = 1 * this.speed;  
     }
 
+   
    _moveAround (){
     
 //console.log( this.direction, this.y);
      if ( this.direction == "down") {
-       this.y = this.y + 3
+       this.y = (this.y + 6) 
 
      } else if ( this.direction == "up") {
       this.y = this.y - 3
      }
      
-     if (this.y > 565) {
+     if (this.y > 530) {
        this.direction = "up";
      } else if (this.y < 0) {
        this.direction = "down"
@@ -32,7 +33,7 @@ class Bird{
    }
 
 
-   /*
+    /*
     _moveAround() {
         if (this.x > 900) {
             this.dx = -this.dx;
@@ -54,8 +55,8 @@ class Bird{
         this.y += this.dy;
         
       }
-      */
+      
       //_stop parar
-
+*/
  }
  

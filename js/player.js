@@ -41,7 +41,11 @@ class Player{
 
     moveLeft() {
      //  if (no estic fora del canvas)
+
+     if (this.x > 0 ) {
       this.x = this.x - 25;
+  }
+      
     }
 
  }

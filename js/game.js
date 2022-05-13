@@ -2,26 +2,20 @@
 class Game{
   constructor(context) {
     this.ctx = context;
-    this.player = new Player (20, 565, 35, 35);
-    this.bird = new Bird (500, 20, 100, 35);
-   // this.intervalGame = undefined;
-    //this.intervalFall = undefined;
+    this.player = new Player (20, 530, 70, 70);
+    this.bird = new Bird (200, 20, 200, 70, 4);
+    this.bird2 = new Bird (600, 200, 200, 70, 4);
+   //Sounds
+   this.gameOverSound = new sound ('./sounds/gameOverSound.wav')
     
   }
   
 _collision(){
   const player = this.player;
   const bird = this.bird;
-
-  //const playerLeftOfBird = ( player.x + player.width) < bird.x;
-  //const playerRightOfBird = player.x > (bird.x + bird.width);
-  //const playerAboveBird = (player.x + player.height) < bird.y;
-  //const playerBelowBird = bird.y > ( bird.y + bird.height);
-
-  console.log(`Player postition is ${this.player.x + this.player.y}`)
-
-//same with bird
-// pensar condicional que quan colisioni en les cantonades superiors cridarem this.bird.stop i farem un console.log de muerte
+  //console.log(`Player postition is ${this.player.x + this.player.y}`)
+  //same with bird
+  // pensar condicional que quan colisioni en les cantonades superiors cridarem this.bird.stop i farem un console.log de muerte
 
        if (
         (
@@ -39,9 +33,38 @@ _collision(){
         )
       ) {
 
-        //alert ("GAME OVER");
+        this.gameOverSound.play();
         this.gameOver();
-        //this._collision();
+        this.gameOverSound.pause();
+      }    
+    
+}
+
+_collision2(){
+  const player = this.player;
+  const bird2 = this.bird2;
+  //console.log(`Player postition is ${this.player.x + this.player.y}`)
+  //same with bird
+  // pensar condicional que quan colisioni en les cantonades superiors cridarem this.bird.stop i farem un console.log de muerte
+
+       if (
+        (
+          // Compruebo si mi player está dentro de la X + width del bird
+          this.player.x >= bird2.x && this.player.x <= bird2.x + bird2.width ||
+          this.player.x + this.player.width >= bird2.x && this.player.x + this.player.width <= bird2.x + bird2.width ||
+          // Incluso si mi meatball es más grande que el droplet
+           bird2.x >= this.player.x && bird2.x <= this.player.x + this.player.width
+        ) &&
+        (
+          // Lo mismo con el eje Y
+          this.player.y >= bird2.y && this.player.y <= bird2.y + bird2.height ||
+          this.player.y + this.player.height >= bird2.y && this.player.y + this.player.height <= bird2.y + bird2.height ||
+          bird2.y >= this.player.y && bird2.y <= this.player.y + this.player.height
+        )
+      ) {
+        this.gameOverSound.play();
+        this.gameOver();
+        this.gameOverSound.pause();
       }    
     
 }
@@ -70,13 +93,12 @@ _collision(){
           }
 
 _checkIfwin() {
-  if (this.player.x > 1000) {
+  if (this.player.x > 930) {
     this._winner();
   }
 }
 // check si player.x > canvas x
 // cridem checkifwin desde update
-// if (fora del canvas) mostrar pantalla win i matar canvas
 
 _winner() {
   const winPage = document.getElementById('win-page');
@@ -87,10 +109,10 @@ _winner() {
 
 
   _drawPlayer(){
-    this.ctx.fillStyle = "red";
-    this.ctx.fillRect(this.player.x, this.player.y, this.player.width, this.player.height);
+    //this.ctx.fillStyle = "red";
+   // this.ctx.fillRect(this.player.x, this.player.y, this.player.width, this.player.height);
    //console.log(this.player.width, this.player.height);
-   //this.ctx.drawImage(player,35, 35);
+   this.ctx.drawImage(player,this.player.x, this.player.y, this.player.width, this.player.height);
   }
 
   _updatePlayer(){
@@ -98,8 +120,9 @@ _winner() {
   }
 
   _drawBird(ctx){
-    this.ctx.fillStyle = "grey";
-    this.ctx.fillRect(this.bird.x, this.bird.y, this.bird.width, this.bird.height)
+    //this.ctx.fillStyle = "grey";
+    //this.ctx.fillRect(this.bird.x, this.bird.y, this.bird.width, this.bird.height)
+    this.ctx.drawImage(bird,this.bird.x, this.bird.y, this.bird.width, this.bird.height)
     
   }
 
@@ -108,6 +131,18 @@ _winner() {
     this.bird._moveAround();
 
  }
+
+
+ _drawBird2(ctx){
+  //this.ctx.fillStyle = "grey";
+  //this.ctx.fillRect(this.bird.x, this.bird.y, this.bird.width, this.bird.height)
+  this.ctx.drawImage(bird2,this.bird2.x, this.bird2.y, this.bird2.width, this.bird2.height) 
+}
+
+_updateBird2(){ 
+  this._drawBird2();
+  this.bird2._moveAround();
+}
 
  gameOver() {
   // Qué tiene que ocurrir cuando pierde
@@ -127,7 +162,9 @@ _winner() {
     this._clean();
     this._updatePlayer();
     this._updateBird();
-    this._collision(this.player,this.bird)
+    this._updateBird2();
+    this._collision(this.player,this.bird);
+    this._collision2(this.player, this.bird2);
     this._checkIfwin();
     window.requestAnimationFrame(() => this._update())
   }
