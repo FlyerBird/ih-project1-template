@@ -19,10 +19,7 @@ window.onload = function () {
  // restartbutton.onclick = location.reload()
 
   restartButton.onclick = function () {
-    losePage.style = "display: none";
-    canvas.classList.remove('hidden');
-    const game = new Game(ctx);
-    game.start();
+    location.reload()
  
   }
 

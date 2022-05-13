@@ -8,6 +8,7 @@ class Game{
    //Sounds
    this.gameOverSound = new sound ('./sounds/gameOverSound.wav');
    this.youWin = new sound ('./sounds/newLevel.wav')
+   this.backgroundMusic = new sound ('./sounds/backgroundMusic.mp3')
     
   }
   
@@ -98,6 +99,7 @@ _checkIfwin() {
     this.youWin.play();
     this._winner();
     this.youWin.pause();
+    
   }
 }
 // check si player.x > canvas x
@@ -108,6 +110,7 @@ _winner() {
   winPage.style = "display: flex";
   const canvas = document.getElementById('canvas');
   canvas.style = "display: none;"
+  
 }
 
 
@@ -175,6 +178,7 @@ _updateBird2(){
   start() {
     this._assignControls();
     this._update();
+    this.backgroundMusic.play();
     
   }
   
