@@ -15,7 +15,6 @@ class Bird{
 
    
    _moveAround (){
-    
 //console.log( this.direction, this.y);
      if ( this.direction == "down") {
        this.y = (this.y + 12) 
@@ -29,7 +28,6 @@ class Bird{
      } else if (this.y < 0) {
        this.direction = "down"
      }
-     
    }
 
 

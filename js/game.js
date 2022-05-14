@@ -5,12 +5,27 @@ class Game{
     this.player = new Player (20, 530, 70, 70);
     this.bird = new Bird (200, 20, 230, 100, );
     this.bird2 = new Bird (600, 200, 230, 100,);
+    this.rock = new Rock (100, 530, 70, 70);
    //Sounds
    this.gameOverSound = new sound ('./sounds/gameOverSound.wav');
    this.youWin = new sound ('./sounds/newLevel.wav')
    this.backgroundMusic = new sound ('./sounds/backgroundMusic.mp3')
-    
+   //this.birdCall = new sound ('./sounds/wildEagle.wav')
   }
+ 
+/*  
+_birdDownEffect(){    
+  if ( this.bird.direction == "down") {
+    this.bird.y = (this.bird.y + 12) 
+    this.birdCall.play();
+  }
+
+  if ( this.bird2.direction == "down") {
+    this.bird2.y = (this.bird2.y + 12) 
+    this.birdCall.play();
+  }
+}
+*/
   
 _collision(){
   const player = this.player;
@@ -113,6 +128,16 @@ _winner() {
   
 }
 
+gameOver() {
+  // Qué tiene que ocurrir cuando pierde
+ // clearInterval(this.intervalFall);
+ // clearInterval(this.intervalGame);
+  const losePage = document.getElementById('lose-page');
+  losePage.style = "display: flex";
+  const canvas = document.getElementById('canvas');
+  canvas.style = "display: none;"
+}
+
 
   _drawPlayer(){
     //this.ctx.fillStyle = "red";
@@ -135,7 +160,7 @@ _winner() {
   _updateBird(){ 
     this._drawBird();
     this.bird._moveAround();
-
+    //this._birdDownEffect();
  }
 
 
@@ -148,17 +173,16 @@ _winner() {
 _updateBird2(){ 
   this._drawBird2();
   this.bird2._moveAround();
+  //this._birdDownEffect();
 }
 
- gameOver() {
-  // Qué tiene que ocurrir cuando pierde
- // clearInterval(this.intervalFall);
- // clearInterval(this.intervalGame);
-  const losePage = document.getElementById('lose-page');
-  losePage.style = "display: flex";
-  const canvas = document.getElementById('canvas');
-  canvas.style = "display: none;"
+_drawRock(){
+  this.ctx.fillStyle = "blue";
+ this.ctx.fillRect(this.rock.x, this.rock.y, this.rock.width, this.rock.height);
+ //console.log(this.player.width, this.player.height);
+ //this.ctx.drawImage(player,this.player.x, this.player.y, this.player.width, this.player.height);
 }
+
 
   _clean(){
     this.ctx.clearRect(0,0,1000,600);
@@ -169,6 +193,7 @@ _updateBird2(){
     this._updatePlayer();
     this._updateBird();
     this._updateBird2();
+    this._drawRock();
     this._collision(this.player,this.bird);
     this._collision2(this.player, this.bird2);
     this._checkIfwin();
@@ -179,6 +204,7 @@ _updateBird2(){
     this._assignControls();
     this._update();
     this.backgroundMusic.play();
+    
     
   }
   
