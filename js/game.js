@@ -99,8 +99,9 @@ _collision2(){
           this.player.moveRight();
           break;
         case 'ArrowUp':
-          //if !this.player.jumping
-            this.player.jump();
+            if (!this.player.jumping) {
+              this.player.jump();
+            }
             break;
         default:
         break;
@@ -130,8 +131,6 @@ _winner() {
 
 gameOver() {
   // Qué tiene que ocurrir cuando pierde
- // clearInterval(this.intervalFall);
- // clearInterval(this.intervalGame);
   const losePage = document.getElementById('lose-page');
   losePage.style = "display: flex";
   const canvas = document.getElementById('canvas');
@@ -176,12 +175,14 @@ _updateBird2(){
   //this._birdDownEffect();
 }
 
+/*
 _drawRock(){
   this.ctx.fillStyle = "blue";
  this.ctx.fillRect(this.rock.x, this.rock.y, this.rock.width, this.rock.height);
  //console.log(this.player.width, this.player.height);
  //this.ctx.drawImage(player,this.player.x, this.player.y, this.player.width, this.player.height);
 }
+*/
 
 
   _clean(){
@@ -193,7 +194,7 @@ _drawRock(){
     this._updatePlayer();
     this._updateBird();
     this._updateBird2();
-    this._drawRock();
+    //this._drawRock();
     this._collision(this.player,this.bird);
     this._collision2(this.player, this.bird2);
     this._checkIfwin();
