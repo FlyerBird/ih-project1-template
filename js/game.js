@@ -5,28 +5,37 @@ class Game{
     this.player = new Player (20, 530, 70, 70);
     this.bird = new Bird (200, 20, 230, 100, );
     this.bird2 = new Bird (600, 200, 230, 100,);
-    this.rock = new Rock (100, 530, 70, 70);
+    //this.rock = new Rock (100, 530, 70, 70);
    //Sounds
    this.gameOverSound = new sound ('./sounds/gameOverSound.wav');
    this.youWin = new sound ('./sounds/newLevel.wav')
    this.backgroundMusic = new sound ('./sounds/backgroundMusic.mp3')
-   //this.birdCall = new sound ('./sounds/wildEagle.wav')
+  // this.birdCall = new sound ('./sounds/wildEagle.wav')
   }
  
-/*  
-_birdDownEffect(){    
-  if ( this.bird.direction == "down") {
-    this.bird.y = (this.bird.y + 12) 
-    this.birdCall.play();
-  }
+  _assignControls() {
+    // Controles del teclado
+    document.addEventListener('keydown', (event) => {
+      switch (event.code) {
+         
+        case 'ArrowLeft':
+          this.player.moveLeft();
+          break;
+        case 'ArrowRight':
+          this.player.moveRight();
+          break;
+        case 'ArrowUp':
+            
+              this.player.jump();
+            
+            break;
+        default:
+        break;
+        }
 
-  if ( this.bird2.direction == "down") {
-    this.bird2.y = (this.bird2.y + 12) 
-    this.birdCall.play();
-  }
-}
-*/
-  
+      });
+          }
+          
 _collision(){
   const player = this.player;
   const bird = this.bird;
@@ -86,58 +95,6 @@ _collision2(){
     
 }
 
-
-  _assignControls() {
-    // Controles del teclado
-    document.addEventListener('keydown', (event) => {
-      switch (event.code) {
-         
-        case 'ArrowLeft':
-          this.player.moveLeft();
-          break;
-        case 'ArrowRight':
-          this.player.moveRight();
-          break;
-        case 'ArrowUp':
-            if (!this.player.jumping) {
-              this.player.jump();
-            }
-            break;
-        default:
-        break;
-        }
-
-      });
-          }
-
-_checkIfwin() {
-  if (this.player.x > 930) {
-    this.youWin.play();
-    this._winner();
-    this.youWin.pause();
-    
-  }
-}
-// check si player.x > canvas x
-// cridem checkifwin desde update
-
-_winner() {
-  const winPage = document.getElementById('win-page');
-  winPage.style = "display: flex";
-  const canvas = document.getElementById('canvas');
-  canvas.style = "display: none;"
-  
-}
-
-gameOver() {
-  // Qué tiene que ocurrir cuando pierde
-  const losePage = document.getElementById('lose-page');
-  losePage.style = "display: flex";
-  const canvas = document.getElementById('canvas');
-  canvas.style = "display: none;"
-}
-
-
   _drawPlayer(){
     //this.ctx.fillStyle = "red";
    // this.ctx.fillRect(this.player.x, this.player.y, this.player.width, this.player.height);
@@ -185,6 +142,35 @@ _drawRock(){
 */
 
 
+_checkIfwin() {
+  if (this.player.x > 930) {
+    this.youWin.play();
+    this._winner();
+    this.youWin.pause();
+    
+  }
+}
+// check si player.x > canvas x
+// cridem checkifwin desde update
+
+_winner() {
+  const winPage = document.getElementById('win-page');
+  winPage.style = "display: flex";
+  const canvas = document.getElementById('canvas');
+  canvas.style = "display: none;"
+  
+}
+
+gameOver() {
+  // Qué tiene que ocurrir cuando pierde
+  const losePage = document.getElementById('lose-page');
+  losePage.style = "display: flex";
+  const canvas = document.getElementById('canvas');
+  canvas.style = "display: none;"
+}
+
+
+
   _clean(){
     this.ctx.clearRect(0,0,1000,600);
   }
@@ -208,6 +194,20 @@ _drawRock(){
     
     
   }
+
+  /*  
+_birdDownEffect(){    
+  if ( this.bird.direction == "down") {
+    this.bird.y = (this.bird.y + 12) 
+    this.birdCall.play();
+  }
+
+  if ( this.bird2.direction == "down") {
+    this.bird2.y = (this.bird2.y + 12) 
+    this.birdCall.play();
+  }
+}
+*/
   
 }
 
