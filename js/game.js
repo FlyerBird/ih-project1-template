@@ -8,9 +8,9 @@ class Game{
     //this.rock = new Rock (100, 530, 70, 70);
    //Sounds
    this.gameOverSound = new sound ('./sounds/gameOverSound.wav');
-   this.youWin = new sound ('./sounds/newLevel.wav')
-   this.backgroundMusic = new sound ('./sounds/backgroundMusic.mp3')
-  
+   this.youWin = new sound ('./sounds/newLevel.wav');
+   this.backgroundMusic = new sound ('./sounds/backgroundMusic.mp3');
+   this.jumpingSound = new sound ('./sounds/jumping.wav');
   }
  
   _assignControls() {
@@ -27,6 +27,7 @@ class Game{
         case 'ArrowUp':
             
               this.player.jump();
+              this.jumpingSound.play();
             
             break;
         default:
