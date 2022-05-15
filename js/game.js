@@ -10,7 +10,7 @@ class Game{
    this.gameOverSound = new sound ('./sounds/gameOverSound.wav');
    this.youWin = new sound ('./sounds/newLevel.wav')
    this.backgroundMusic = new sound ('./sounds/backgroundMusic.mp3')
-  // this.birdCall = new sound ('./sounds/wildEagle.wav')
+  
   }
  
   _assignControls() {
@@ -116,7 +116,7 @@ _collision2(){
   _updateBird(){ 
     this._drawBird();
     this.bird._moveAround();
-    //this._birdDownEffect();
+    
  }
 
 
@@ -195,19 +195,5 @@ gameOver() {
     
   }
 
-  /*  
-_birdDownEffect(){    
-  if ( this.bird.direction == "down") {
-    this.bird.y = (this.bird.y + 12) 
-    this.birdCall.play();
-  }
-
-  if ( this.bird2.direction == "down") {
-    this.bird2.y = (this.bird2.y + 12) 
-    this.birdCall.play();
-  }
-}
-*/
-  
 }
 
