@@ -4,9 +4,6 @@ class Player{
       this.y = y;
       this.width = width;
       this.height = height;
-
-      //this.jumpHeight = 200;
-  
          // Jumping with gravity parameters 
       this.drag = 1;
       this.gravity = 0.3;
@@ -14,34 +11,13 @@ class Player{
       this.onTheGround = true;
       this.jumpInterval = undefined;
       this.floorBackgroundY = 600;
+
+ 
+      
+    
   
     }
 
-    
-    
-/*
-    jump() {
-      
-      const jumpReference = this.y;
-      
-      const jumpUp = () => {
-        
-        if((this.y > jumpReference-this.jumpHeight) && (!this.jumping)) {
-          this.y -= 20;
-        } else {
-          this.jumping = true;
-          this.y+=20;
-          if(this.y === jumpReference) {
-            clearInterval(jumpId);
-            this.jumping = false;
-          }
-        }
-        
-      }
-      const jumpId = setInterval(jumpUp, 20)
-    }
-*/
-  
     moveRight() {
       this.x = this.x + 25;
     }
@@ -60,7 +36,9 @@ class Player{
             this.speed += this.gravity; // Modify the speed according to my gravity and drag forces
             this.speed *= this.drag;    // then add the speed to the Y axis
             this.y += this.speed;       // This will go up and, in a few iterations, start going down on its own, and it won't stop going down
-            this._checkIfOnFloor();     // So I have to check if I'm back on the floor
+            this._checkIfOnFloor();
+           
+                 // So I have to check if I'm back on the floor
           }, 10);
         }
       }
@@ -76,6 +54,8 @@ class Player{
         this.onTheGround = true;
       }
     }
+    
+  
 
  }
 
