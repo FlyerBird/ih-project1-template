@@ -1,11 +1,15 @@
 
 class Game{
-  constructor(context) {
+  constructor(context, context2) {
     this.ctx = context;
+    this.ctx2 = context2;
     this.player = new Player (20, 530, 70, 70);
     this.bird = new Bird (200, 20, 230, 100, );
     this.bird2 = new Bird (600, 200, 230, 100,);
-    this.rock = new Rock (100, 530, 70, 70);
+    this.bird3 = new Bird (600, 200, 230, 100,);
+    this.level = 1;
+    
+    //this.rock = new Rock (100, 530, 70, 70);
    //Sounds
    this.gameOverSound = new sound ('./sounds/gameOverSound.wav');
    this.youWin = new sound ('./sounds/newLevel.wav');
@@ -64,7 +68,7 @@ _collision(){
       }    
     
 }
-
+/*
 _rockCollision(){
 
   if (
@@ -75,6 +79,7 @@ _rockCollision(){
   } else {
     this.player.floorBackgroundY = 600;
   }
+  */
 
    /*
   if (
@@ -94,8 +99,9 @@ _rockCollision(){
   ) {
     this.player.floorBackgroundY = 530;
   }    
-  */
+ 
 }
+ */
 
 _collision2(){
   const player = this.player;
@@ -131,31 +137,54 @@ _collision2(){
     //this.ctx.fillStyle = "red";
    // this.ctx.fillRect(this.player.x, this.player.y, this.player.width, this.player.height);
    //console.log(this.player.width, this.player.height);
-   this.ctx.drawImage(player,this.player.x, this.player.y, this.player.width, this.player.height);
+   this.ctx.drawImage(player,this.player.x, this.player.y, this.player.width, this.player.height); //if this.level === 2 {this.ctx2.clearRect}
+   if (this.level === 2){
+     this.ctx2.clearRect(0,0,1000,600);
+   }
   }
+  
 
   _updatePlayer(){
     this._drawPlayer();
   }
 
-  _drawBird(ctx){
+  _drawBird(){
     //this.ctx.fillStyle = "grey";
     //this.ctx.fillRect(this.bird.x, this.bird.y, this.bird.width, this.bird.height)
-    this.ctx.drawImage(bird,this.bird.x, this.bird.y, this.bird.width, this.bird.height)
-    
+    this.ctx.drawImage(bird,this.bird.x, this.bird.y, this.bird.width, this.bird.height)  //if this.level === 2 {this.ctx2.clearRect}
+    if (this.level === 2){
+      this.ctx2.clearRect(0,0,1000,600);
+    }
   }
 
   _updateBird(){ 
     this._drawBird();
-    this.bird._moveAround();
+    this.bird._moveAround(); 
     
  }
 
 
- _drawBird2(ctx){
+ _drawBird2(){
   //this.ctx.fillStyle = "grey";
   //this.ctx.fillRect(this.bird.x, this.bird.y, this.bird.width, this.bird.height)
   this.ctx.drawImage(bird2,this.bird2.x, this.bird2.y, this.bird2.width, this.bird2.height) 
+  if (this.level === 2){
+    this.ctx2.clearRect(0,0,1000,600);
+  } //if this.level === 2 {this.ctx2.clearRect}
+}
+
+_drawBird3(){
+  //this.ctx.fillStyle = "grey";
+  //this.ctx.fillRect(this.bird.x, this.bird.y, this.bird.width, this.bird.height)
+  this.ctx2.drawImage(bird2,this.bird2.x, this.bird2.y, this.bird2.width, this.bird2.height) 
+  if (this.level === 2){
+    this.ctx2.clearRect(0,0,1000,600);
+  } //if this.level === 2 {this.ctx2.clearRect}
+}
+
+_updateBird3(){ 
+  this._drawBird3();
+  this.bird3._moveAround();
 }
 
 _updateBird2(){ 
@@ -163,7 +192,7 @@ _updateBird2(){
   this.bird2._moveAround();
 }
 
-
+/*
 _drawRock(){
   this.ctx.fillStyle = "blue";
  this.ctx.fillRect(this.rock.x, this.rock.y, this.rock.width, this.rock.height);
@@ -171,13 +200,22 @@ _drawRock(){
  //this.ctx.drawImage(player,this.player.x, this.player.y, this.player.width, this.player.height);
 }
 
+*/
+
 
 
 _checkIfwin() {
-  if (this.player.x > 930) {
-    this.youWin.play();
+  if (this.player.x > 930 && this.level) {
     this._winner();
-    this.youWin.pause();
+    this.level = 2;
+    this.player.x = 20;
+
+    //error this.ctx.remove();
+
+    //this.youWin.play();
+    //this.youWin.pause();
+    //if this.level 1 {this.ctx.remove()
+                       //this.level 2}
     
   }
 }
@@ -185,9 +223,9 @@ _checkIfwin() {
 // cridem checkifwin desde update
 
 _winner() {
-  const winPage = document.getElementById('win-page');
-  winPage.style = "display: flex";
-  const canvas = document.getElementById('canvas');
+  //const winPage = document.getElementById('win-page');
+ // winPage.style = "display: flex";
+  const canvas = document.getElementById('canvas2');
   canvas.style = "display: none;"
   
 }
@@ -204,18 +242,21 @@ gameOver() {
 
   _clean(){
     this.ctx.clearRect(0,0,1000,600);
+    if (this.level === 2){
+      this.ctx2.clearRect(0,0,1000,600);
+    } //if this.level === 2 {this.ctx2.clearRect}
   }
 
   _update() {
     this._clean();
     this._updatePlayer();
-    this._updateBird();
+    this._updateBird(); // if this.level 2 {updated bird3}
     this._updateBird2();
-    this._drawRock();
+    //this._drawRock();
     this._collision(this.player,this.bird);
     this._collision2(this.player, this.bird2);
     this._checkIfwin();
-    this._rockCollision();
+    //this._rockCollision();
     window.requestAnimationFrame(() => this._update())
   }
 
@@ -223,8 +264,7 @@ gameOver() {
     this._assignControls();
     this._update();
     this.backgroundMusic.play();
-    
-    
+   
   }
 
 }

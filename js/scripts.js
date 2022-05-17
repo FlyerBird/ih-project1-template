@@ -6,14 +6,14 @@ window.onload = function () {
   const startButton = document.getElementById('start');
   const restartButton = document.getElementById('restart'); //selecciones el botó
   
-
+  const canvas2 = document.getElementById('canvas2');
+  const ctx2 = canvas2.getContext('2d');
   
   startButton.onclick = function () {
     startPage.style = "display: none";
     canvas.classList.remove('hidden');
-    const game = new Game(ctx);
+    const game = new Game(ctx, ctx2);
     game.start();
-    
   }
 
  // restartbutton.onclick = location.reload()
@@ -23,6 +23,9 @@ window.onload = function () {
  
   }
 
-
-
+  
 }
+
+
+
+

@@ -44,6 +44,23 @@ p, h2 {
   color: #45d168;
 }
 
+#start-page2 {
+  height: 600px;
+  width: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin: 0 auto;
+  border: 1px solid black;
+  margin-top: 30px;
+  background-color: rgb(244, 246, 251);
+  background-image: url('../img/landscape-night.jpg');
+  background-size: 100%;
+  color: #45d168;
+}
+
 
 #lose-page {
   display: none;
