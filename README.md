@@ -22,7 +22,7 @@ The game ends when the player (the little grasshoper) it is catched by one of th
 
 ## User stories Backlog
 
-- User can ...
+- User can level up
 
 ## File structure
 
