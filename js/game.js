@@ -139,10 +139,13 @@ _rockCollision(){
     //this.ctx.fillStyle = "red";
    // this.ctx.fillRect(this.player.x, this.player.y, this.player.width, this.player.height);
    //console.log(this.player.width, this.player.height);
-   this.ctx.drawImage(player,this.player.x, this.player.y, this.player.width, this.player.height); //if this.level === 2 {this.ctx2.clearRect}
+   this.ctx.drawImage(player,this.player.x, this.player.y, this.player.width, this.player.height);
+   
    if (this.level === 2){
-     this.ctx2.clearRect(0,0,1000,600);
+  // this.ctx.clearRect(0,0,1000,600);
+     this.ctx2.drawImage(player,this.player.x, this.player.y, this.player.width, this.player.height);
    }
+   
   }
   
 
@@ -153,10 +156,13 @@ _rockCollision(){
   _drawBird(){
     //this.ctx.fillStyle = "grey";
     //this.ctx.fillRect(this.bird.x, this.bird.y, this.bird.width, this.bird.height)
-    this.ctx.drawImage(bird,this.bird.x, this.bird.y, this.bird.width, this.bird.height)  //if this.level === 2 {this.ctx2.clearRect}
+    this.ctx.drawImage(bird,this.bird.x, this.bird.y, this.bird.width, this.bird.height)
+   
     if (this.level === 2){
-      this.ctx2.clearRect(0,0,1000,600);
+     // this.ctx.clearRect(0,0,1000,600);
+      this.ctx2.drawImage(bird,this.bird.x, this.bird.y, this.bird.width, this.bird.height)
     }
+  
   }
 
   _updateBird(){ 
@@ -170,9 +176,11 @@ _rockCollision(){
   //this.ctx.fillStyle = "grey";
   //this.ctx.fillRect(this.bird.x, this.bird.y, this.bird.width, this.bird.height)
   this.ctx.drawImage(bird2,this.bird2.x, this.bird2.y, this.bird2.width, this.bird2.height) 
+  
   if (this.level === 2){
-    this.ctx2.clearRect(0,0,1000,600);
-  } //if this.level === 2 {this.ctx2.clearRect}
+    this.ctx2.drawImage(bird2,this.bird2.x, this.bird2.y, this.bird2.width, this.bird2.height)
+  } 
+  
 }
 
 _updateBird2(){ 
@@ -184,15 +192,19 @@ _drawBird3(){
   //this.ctx.fillStyle = "grey";
   //this.ctx.fillRect(this.bird.x, this.bird.y, this.bird.width, this.bird.height)
   this.ctx2.drawImage(bird3,this.bird3.x, this.bird3.y, this.bird3.width, this.bird3.height) 
+  /*
   if (this.level === 2){
-    this.ctx2.clearRect(0,0,1000,600);
-  } //if this.level === 2 {this.ctx2.clearRect}
+    this.ctx2.drawImage(bird3,this.bird3.x, this.bird3.y, this.bird3.width, this.bird3.height) 
+    
+  }
+  */
 }
 
 _updateBird3(){ 
   this._drawBird3();
   this.bird3._moveAround();
 }
+
 
 
 
@@ -206,8 +218,29 @@ _drawRock(){
 
 */
 
-
-
+_checkIfwin() {
+  if (this.player.x > 930 && this.level === 1) {
+    this._winner();
+    this.level = 2;
+    this.player.x = 20;
+    document.getElementsByTagName('canvas')[0].remove();
+    document.getElementsByTagName('canvas')[0].classList.remove('hidden');
+    document.getElementsByTagName('canvas')[0].classList.add('level2');
+    document.getElementsByTagName('canvas')[0].style="display:block";
+    
+    //this.youWin.play();
+    //this.youWin.pause();
+    //if this.level 1 {this.ctx.remove()
+                       //this.level 2}
+    
+  } else if (this.player.x > 930 && this.level === 2) {
+    this._winnerNext();
+    document.getElementsByTagName('canvas')[0].remove();
+    //this.ctx2.clearRect(0,0,1000,600);
+  }
+  
+}
+/*
 _checkIfwin() {
   if (this.player.x > 930 && this.level) {
     this._winner();
@@ -228,21 +261,32 @@ _checkIfwin() {
 }
 // check si player.x > canvas x
 // cridem checkifwin desde update
-
+*/
 _winner() {
-  //const winPage = document.getElementById('win-page');
- // winPage.style = "display: flex";
+
   const canvas = document.getElementById('canvas2');
   canvas.style = "display: none;"
+
   
+}
+
+_winnerNext(){
+    const winPage = document.getElementById('win-page');
+     winPage.style = "display: flex";
+      //this.youWin.play();
+    //this.youWin.pause();
 }
 
 gameOver() {
   // Qué tiene que ocurrir cuando pierde
   const losePage = document.getElementById('lose-page');
   losePage.style = "display: flex";
-  const canvas = document.getElementById('canvas');
-  canvas.style = "display: none;"
+  let canvas = document.getElementsByTagName('canvas');
+   canvas = [...canvas]
+  canvas.forEach(element => {
+    element.remove();
+  });
+  
 }
 
 
@@ -257,7 +301,11 @@ gameOver() {
   _update() {
     this._clean();
     this._updatePlayer();
-    this._updateBird(); // if this.level 2 {updated bird3}
+    this._updateBird(); 
+    if (this.level === 2){
+      this._updateBird();
+    }
+
     this._updateBird2();
     if (this.level === 2){
       this._updateBird3();
