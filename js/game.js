@@ -19,6 +19,7 @@ class Game{
    this.succesVoice = new sound ('./sounds/succesVoice.wav')
 
    this.wildBirdSound = new sound ('./sounds/wildBirdSound.wav')
+   this.playerTalk = new sound ('./sounds/playerTalk.wav')
   }
  
   _assignControls() {
@@ -32,6 +33,9 @@ class Game{
         case 'ArrowRight':
           this.player.moveRight();
           break;
+        case 'ArrowDown':
+            this.playerTalk.play();
+            break;
         case 'ArrowUp':
              this.player.jump();
              this.jumpingSound.play();

@@ -7,7 +7,7 @@
 
 ## Description
 
-In this game the player is a little grasshopper who will have to do his best to arrive at the end of the Level 1 and unlock Level 2. 
+In this game the player is a little grasshopper who will have to do his best to arrive at the end of each frame and unlock the next level.  
 
 The game ends when the player (the little grasshoper) it is catched by one of the CRAZY BIRDS.
 
@@ -30,5 +30,6 @@ The game ends when the player (the little grasshoper) it is catched by one of th
 - <code>player.js</code>: constructor for the player meatball. Methods: moveRight(), moveLeft() and jump()
 - <code>game.js</code>: contains all the elements for the game to work. Methods: start(), \_update()
 - <code>scripts.js</code>: contains all the DOM manipulation code to start the game
-
+- <code>assets.js</code>: contains all the birds and player's images
+- <code>sound.js</code>: contains the sound function for the sounds effects
 ## Useful links
