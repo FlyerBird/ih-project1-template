@@ -1,16 +1,12 @@
 
 class Bird{
-    constructor(x, y, width, height, speed) {
+    constructor(x, y, width, height) {
       this.x = x;
       this.y = y;
       this.width = width;
       this.height = height;
 
-      this.direction = "down";
-      //this.speed = speed;
-
-      //this.dx = 1 * this.speed;
-      //this.dy = 1 * this.speed;  
+      this.direction = "down"; 
     }
 
    
@@ -31,30 +27,42 @@ class Bird{
    }
 
 
-    /*
-    _moveAround() {
-        if (this.x > 900) {
-            this.dx = -this.dx;
-        }
-
-        if (this.x < 0 ) {
-            this.dx = -this.dx;
-        }
-
-        if (this.y > 565 ) {
-            this.dy = -this.dy;
-        }
-
-        if (this.y < 0 ) {
-            this.dy = -this.dy;
-        }
-        
-        this.x += this.dx;
-        this.y += this.dy;
-        
+    
+    _moveAround2() {
+      if ( this.direction == "down") {
+        this.y = (this.y + 20) 
+ 
+      } else if ( this.direction == "up") {
+       this.y = this.y - 3
       }
       
-      //_stop parar
-*/
+      if (this.y > 480) {
+        this.direction = "up";
+      } else if (this.y < 0) {
+        this.direction = "down"
+      }
+        
+      }
+
+      _moveAround3() {
+        if ( this.direction == "down") {
+          this.y = (this.y + 10)
+   
+        } 
+        
+        
+        else if ( this.direction == "up") {
+         this.y = this.y - 20
+        }
+        
+        if (this.y > 530) {
+          this.direction = "up";
+        } else if (this.y < 0) {
+          this.direction = "down"
+        }
+          
+        }
+      
+    
  }
  

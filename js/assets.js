@@ -13,7 +13,7 @@ bird2.src = './img/img-hawk 1000x667.png';
 
 //Bird3
 const bird3 = new Image();
-bird3.src = './img/img-hawk 1000x667.png';
+bird3.src = './img/finalBird.png';
 
 
 

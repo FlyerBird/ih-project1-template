@@ -6,17 +6,19 @@ class Game{
     this.player = new Player (20, 530, 70, 70);
     this.bird = new Bird (200, 20, 230, 100, );
     this.bird2 = new Bird (600, 200, 230, 100,);
-    this.bird3 = new Bird (400, 20, 230, 100,);
+    this.bird3 = new Bird (400, 20, 100, 70,);
     this.level = 1;
     
     //this.rock = new Rock (100, 530, 70, 70);
    //Sounds
    this.gameOverSound = new sound ('./sounds/gameOverSound.wav');
    this.youWin = new sound ('./sounds/newLevel.wav');
-   this.backgroundMusic = new sound ('./sounds/backgroundMusic.mp3');
+   
    this.jumpingSound = new sound ('./sounds/jumping.wav');
-
    this.dramaticBackground = new sound ('./sounds/dramaticBackground.mp3');
+   this.succesVoice = new sound ('./sounds/succesVoice.wav')
+
+   this.wildBirdSound = new sound ('./sounds/wildBirdSound.wav')
   }
  
   _assignControls() {
@@ -91,6 +93,35 @@ _collision2(){
           this.player.y >= bird2.y && this.player.y <= bird2.y + bird2.height ||
           this.player.y + this.player.height >= bird2.y && this.player.y + this.player.height <= bird2.y + bird2.height ||
           bird2.y >= this.player.y && bird2.y <= this.player.y + this.player.height
+        )
+      ) {
+        this.gameOverSound.play();
+        this.gameOver();
+        this.gameOverSound.pause();
+      }    
+    
+}
+
+_collision3(){
+  const player = this.player;
+  const bird3 = this.bird3;
+  //console.log(`Player postition is ${this.player.x + this.player.y}`)
+  //same with bird
+  // pensar condicional que quan colisioni en les cantonades superiors cridarem this.bird.stop i farem un console.log de muerte
+
+       if (
+        (
+          // Compruebo si mi player está dentro de la X + width del bird2
+          this.player.x >= bird3.x && this.player.x <= bird3.x + bird3.width ||
+          this.player.x + this.player.width >= bird3.x && this.player.x + this.player.width <= bird3.x + bird3.width ||
+          // Incluso si mi player es más grande que el bird2
+           bird2.x >= this.player.x && bird2.x <= this.player.x + this.player.width
+        ) &&
+        (
+          // Lo mismo con el eje Y
+          this.player.y >= bird3.y && this.player.y <= bird3.y + bird3.height ||
+          this.player.y + this.player.height >= bird3.y && this.player.y + this.player.height <= bird3.y + bird3.height ||
+          bird3.y >= this.player.y && bird3.y <= this.player.y + this.player.height
         )
       ) {
         this.gameOverSound.play();
@@ -187,7 +218,7 @@ _rockCollision(){
 
 _updateBird2(){ 
   this._drawBird2();
-  this.bird2._moveAround();
+  this.bird2._moveAround2();
 }
 
 _drawBird3(){
@@ -204,7 +235,8 @@ _drawBird3(){
 
 _updateBird3(){ 
   this._drawBird3();
-  this.bird3._moveAround();
+  this.bird3._moveAround3();
+  this.wildBirdSound.play();
 }
 
 
@@ -268,6 +300,10 @@ _winner() {
 
   const canvas = document.getElementById('canvas2');
   canvas.style = "display: none;"
+  this.succesVoice.play();
+  this.bird.x = 100;
+  this.bird2.x = 700;
+  this.bird3.x = 450;
   //error not a function :S mp3?¿ this.backgroundMusic.pause();
   //this.dramaticBackground.play();
 }
@@ -275,6 +311,7 @@ _winner() {
 _winnerNext(){
     const winPage = document.getElementById('win-page');
      winPage.style = "display: flex";
+     this.succesVoice.play();
      this.youWin.play();
      //this.youWin.pause();
 }
@@ -315,6 +352,7 @@ gameOver() {
     //this._drawRock();
     this._collision(this.player,this.bird);
     this._collision2(this.player, this.bird2);
+    this._collision3(this.player, this.bird3);
     this._checkIfwin();
 
     this.dramaticBackground.play();
