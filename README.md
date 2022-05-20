@@ -3,7 +3,7 @@
 > Crazy Birds is my first game project at Ironhack's module 1.
 
 <!-- When you finish, add a nice screenshot of your game -->
-<!--[<img src="./img/page.png">]()-->
+[<img src="./img/screenshot2.jpg">](https://github.com/FlyerBird/ih-project1-template)
 
 ## Description
 
