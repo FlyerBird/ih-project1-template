@@ -15,6 +15,8 @@ class Game{
    this.youWin = new sound ('./sounds/newLevel.wav');
    this.backgroundMusic = new sound ('./sounds/backgroundMusic.mp3');
    this.jumpingSound = new sound ('./sounds/jumping.wav');
+
+   this.dramaticBackground = new sound ('./sounds/dramaticBackground.mp3');
   }
  
   _assignControls() {
@@ -266,15 +268,15 @@ _winner() {
 
   const canvas = document.getElementById('canvas2');
   canvas.style = "display: none;"
-
-  
+  //error not a function :S mp3?¿ this.backgroundMusic.pause();
+  //this.dramaticBackground.play();
 }
 
 _winnerNext(){
     const winPage = document.getElementById('win-page');
      winPage.style = "display: flex";
-      //this.youWin.play();
-    //this.youWin.pause();
+     this.youWin.play();
+     //this.youWin.pause();
 }
 
 gameOver() {
@@ -314,6 +316,11 @@ gameOver() {
     this._collision(this.player,this.bird);
     this._collision2(this.player, this.bird2);
     this._checkIfwin();
+
+    this.dramaticBackground.play();
+    if (this.level === 2){
+      //this.backgroundMusic.remove();
+    }
     //this._rockCollision();
     window.requestAnimationFrame(() => this._update())
   }
@@ -321,7 +328,7 @@ gameOver() {
   start() {
     this._assignControls();
     this._update();
-    this.backgroundMusic.play();
+    
    
   }
 

@@ -38,7 +38,7 @@ p, h2 {
   margin: 0 auto;
   border: 1px solid black;
   margin-top: 30px;
-  background-color: rgb(244, 246, 251);
+  
   background-image: url('../img/background-intro.webp');
   background-size: 100%;
   color: #45d168;
@@ -48,6 +48,7 @@ p, h2 {
  
   background-image: url('../img/landscape-night.jpg');
   background-size: 100%;
+  background-color: #ecf1ee;
 
 }
 
